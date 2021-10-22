@@ -1,0 +1,23 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "dist",
+    "moduleResolution": "node",
+    "module": "ESNext",
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": true,
+    "noImplicitAny": true,
+    "checkJs": false,
+    "allowJs": false,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
+    "paths": {
+      "~/*": ["src/*"]
+    },
+    "types": ["@nuxt/types"]
+  },
+  "include": ["src/**/*.ts"]
+}
