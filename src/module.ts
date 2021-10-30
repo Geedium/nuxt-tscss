@@ -22,7 +22,6 @@ const tscss: Module<Options> = function (moduleOptions) {
       binding: any
     ) => {
       const style = vnode.data.style || (vnode.data.style = {});
-      let classList = vnode.data.class || (vnode.data.class = {});
 
       let computedClass: string[] = [];
 
@@ -38,10 +37,11 @@ const tscss: Module<Options> = function (moduleOptions) {
         }
       }
 
-      classList = {
-        ...classList,
-        ...computedClass,
-      };
+      if (typeof vnode.data.class === "string") {
+        computedClass.push(vnode.data.class);
+      }
+      
+      vnode.data.class = computedClass;
     };
   }
 
