@@ -1,0 +1,48 @@
+@use "sass:map"
+
+$spacer: 1rem !default
+
+.is
+    &-flex
+        display: flex
+    &-block
+        display: block
+    &-inline
+        display: inline
+    &-inline-block
+        display: inline-block
+    &-grid
+        display: grid
+    &-table
+        display: table
+    &-content
+        &-justified
+            &-at-start
+                justify-content: start
+            &-at-end
+                justify-content: end
+            &-at-flex-start
+                justify-content: flex-start
+            &-at-flex-end
+                justify-content: flex-end
+            &-centered
+                justify-content: center
+            &-left
+                justify-content: left
+            &-right
+                justify-content: right
+            &-between
+                justify-content: space-between
+            &-around
+                justify-content: space-around
+            &-evenly
+                justify-content: space-evenly
+
+$anchors: (l: left, t: top, r: right, b: bottom)
+
+@each $key, $value in $anchors
+    @for $i from 1 through 10
+        .m#{$key}-#{$i}
+            margin-#{$value}: #{$spacer * $i}
+        .p#{$key}-#{$i}
+            padding-#{$value}: #{$spacer * $i}
