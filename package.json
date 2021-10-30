@@ -1,7 +1,7 @@
 {
   "name": "@geedium/nuxt-tscss",
   "description": "Use styles directly in templates",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/module.js",
   "types": "dist/types.d.ts",
   "files": [
