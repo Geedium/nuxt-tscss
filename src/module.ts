@@ -21,7 +21,10 @@ const tscss: Module<Options> = function (moduleOptions) {
       vnode: any,
       binding: any
     ) => {
+      console.log(vnode.data);
+
       const style = vnode.data.style || (vnode.data.style = {});
+      const classList = vnode.data.class || (vnode.data.class = []);
 
       let computedClass: string[] = [];
 
@@ -37,7 +40,7 @@ const tscss: Module<Options> = function (moduleOptions) {
         }
       }
 
-      vnode.elm.classList.add(...computedClass);
+      classList.push(...computedClass);
     };
   }
 
