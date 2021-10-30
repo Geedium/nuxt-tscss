@@ -37,7 +37,7 @@ const tscss: Module<Options> = function (moduleOptions) {
         }
       }
 
-      el.data.class.add(...computedClass);
+      el.classList.add(...computedClass);
     };
   }
 
