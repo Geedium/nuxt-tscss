@@ -1,7 +1,7 @@
 {
   "name": "@geedium/nuxt-tscss",
   "description": "Use styles directly in templates",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/module.js",
   "types": "dist/types.d.ts",
   "files": [
@@ -9,10 +9,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "yarn && yarn clean && babel src --out-dir dist --extensions .ts --copy-files && tsc -b",
-    "deploy": "yarn build && yarn publish --access public && git push && yarn checkout",
-    "checkout": "yarn clean && rimraf node_modules",
-    "clean": "rimraf dist"
+    "build": "yarn && babel src --out-dir dist --extensions .ts --copy-files && tsc -b",
+    "deploy": "yarn build && yarn publish --access public && git push && yarn checkout"
   },
   "license": "MIT",
   "devDependencies": {
@@ -22,7 +20,6 @@
     "@nuxt/types": "^2.15.8",
     "@tsconfig/node16": "^1.0.2",
     "@types/node": "^16.11.2",
-    "rimraf": "^3.0.2",
     "typescript": "^4.4.4",
     "vue": "^2.6.14"
   }
