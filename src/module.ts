@@ -18,10 +18,10 @@ const tscss: Module<Options> = function (moduleOptions) {
     }
 
     this.options.render.bundleRenderer.directives.css = (
-      el: any,
+      vnode: any,
       binding: any
     ) => {
-      const style = el.data.style || (el.data.style = {});
+      const style = vnode.data.style || (vnode.data.style = {});
 
       let computedClass: string[] = [];
 
@@ -37,7 +37,7 @@ const tscss: Module<Options> = function (moduleOptions) {
         }
       }
 
-      el.classList.add(...computedClass);
+      vnode.elm.classList.add(...computedClass);
     };
   }
 
