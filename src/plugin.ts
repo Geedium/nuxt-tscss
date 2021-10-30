@@ -1,9 +1,46 @@
 import Vue, { VNodeDirective } from "vue";
+import { Plugin } from "@nuxt/types";
 import { DisplayType, Alignment, Styles } from "./types";
 
 export interface StyleDirective extends VNodeDirective {
   value?: Partial<Styles>;
 }
+
+declare module "vue/types/vue" {
+  // this.$myInjectedFunction inside Vue components
+  interface Vue {
+    $styled(props: any): void;
+  }
+}
+
+declare module "@nuxt/types" {
+  interface NuxtAppOptions {
+    $styled(props: any): void;
+  }
+  interface Context {
+    $styled(props: any): void;
+  }
+}
+
+const tscssPlugin: Plugin = (context, inject) => {
+  inject("styled", (props: any) => {
+    if (typeof props !== "object") return;
+
+    let computedClass: string[] = [];
+
+    for (const [key, value] of Object.entries<any>(props)) {
+      switch (key as keyof Styles) {
+        case "color":
+          if (["primary", "secondary", "accent"].indexOf(value) !== -1) {
+            computedClass.push(`text-${value}`);
+          }
+          break;
+      }
+    }
+
+    return computedClass;
+  });
+};
 
 Vue.directive("css", {
   bind: function (el, binding: StyleDirective): void {
@@ -107,3 +144,5 @@ Vue.directive("css", {
     el.classList.add(...computedClass);
   },
 });
+
+export default tscssPlugin;
