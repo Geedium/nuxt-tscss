@@ -1,6 +1,25 @@
 @use "sass:map"
 
 $spacer: 1rem !default
+$primary: #007bff !default
+$secondary: #6c757d !default
+$accent: darken($primary, 30%) !default
+
+.text
+    &-primary
+        color: $primary
+    &-secondary
+        color: $secondary
+    &-accent
+        color: $accent
+
+.bg
+    &-primary
+        background: $primary
+    &-secondary
+        background: $secondary
+    &-accent
+        background: $accent
 
 .is
     &-flex

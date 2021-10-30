@@ -13,6 +13,9 @@ Vue.directive("css", {
 
     for (const [key, value] of Object.entries<any>(binding.value)) {
       switch (key as keyof Styles) {
+        case "backgroundColor":
+          computedClass.push(`bg-${value}`);
+          break;
         case "display":
           switch (value as DisplayType) {
             case "block":
