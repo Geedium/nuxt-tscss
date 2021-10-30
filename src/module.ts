@@ -10,20 +10,22 @@ const tscss: Module<Options> = function (moduleOptions) {
 
   this.options.css.push(resolve(__dirname, "style.sass"));
 
-  if (!this.options.render.bundleRenderer.directives) {
-    this.options.render.bundleRenderer.directives = {};
-  }
-
-  this.options.render.bundleRenderer.directives.css = (
-    element: any,
-    binding: any
-  ) => {
-    console.log("running loading directive server side");
-  };
-
   if (!options.stylesOnly) {
-    this.addPlugin({ src: resolve(__dirname, "plugin.js") });
+    if (!this.options.render.bundleRenderer.directives) {
+      this.options.render.bundleRenderer.directives = {};
+    }
+
+    this.options.render.bundleRenderer.directives.css = (
+      vnode: any,
+      dir: any
+    ) => {
+      const style = vnode.data.style || (vnode.data.style = {});
+      style.background = "#a3a3a3";
+      console.log("running loading directive server side");
+    };
   }
+
+  // this.addPlugin({ src: resolve(__dirname, "plugin.js") });
 };
 
 export default tscss;
