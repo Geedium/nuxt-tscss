@@ -13,8 +13,19 @@ Vue.directive("css", {
 
     for (const [key, value] of Object.entries<any>(binding.value)) {
       switch (key as keyof Styles) {
+        case "color":
+          if (["primary", "secondary", "accent"].indexOf(value) !== -1) {
+            computedClass.push(`text-${value}`);
+          } else {
+            el.style.color = value;
+          }
+          break;
         case "backgroundColor":
-          computedClass.push(`bg-${value}`);
+          if (["primary", "secondary", "accent"].indexOf(value) !== -1) {
+            computedClass.push(`bg-${value}`);
+          } else {
+            el.style.backgroundColor = value;
+          }
           break;
         case "display":
           switch (value as DisplayType) {

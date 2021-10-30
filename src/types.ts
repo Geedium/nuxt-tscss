@@ -269,4 +269,5 @@ export interface Styles {
   width: string;
   height: string;
   expand: ExpandOptions;
+  color: string;
 }
