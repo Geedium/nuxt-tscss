@@ -1,6 +1,8 @@
 import { Module } from "@nuxt/types";
 import { resolve } from "path";
 
+import { Styles } from "./types";
+
 interface Options {}
 
 const tscss: Module<Options> = function (moduleOptions) {
@@ -16,12 +18,26 @@ const tscss: Module<Options> = function (moduleOptions) {
     }
 
     this.options.render.bundleRenderer.directives.css = (
-      vnode: any,
-      dir: any
+      el: any,
+      binding: any
     ) => {
-      const style = vnode.data.style || (vnode.data.style = {});
-      style.background = "#a3a3a3";
-      console.log("running loading directive server side");
+      const style = el.data.style || (el.data.style = {});
+
+      let computedClass: string[] = [];
+
+      for (const [key, value] of Object.entries<any>(binding.value)) {
+        switch (key as keyof Styles) {
+          case "color":
+            if (["primary", "secondary", "accent"].indexOf(value) !== -1) {
+              computedClass.push(`text-${value}`);
+            } else {
+              style.color = value;
+            }
+            break;
+        }
+      }
+
+      el.data.class.add(...computedClass);
     };
   }
 
