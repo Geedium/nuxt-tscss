@@ -12,7 +12,13 @@ const tscss: Module<Options> = function (moduleOptions) {
 
   this.options.css.push(resolve(__dirname, "style.sass"));
 
+  this.addTemplate({
+    fileName: "nuxt-tscss/styled.js",
+    src: resolve(__dirname, "styled.js"),
+  });
+
   this.addPlugin({
+    fileName: "nuxt-tscss/plugin.client.js",
     src: resolve(__dirname, "plugin.client.js"),
     mode: "client",
   });
