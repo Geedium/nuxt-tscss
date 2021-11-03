@@ -12,6 +12,11 @@ const tscss: Module<Options> = function (moduleOptions) {
 
   this.options.css.push(resolve(__dirname, "style.sass"));
 
+  this.addPlugin({
+    src: resolve(__dirname, "plugin.client.js"),
+    mode: "client",
+  });
+
   if (!options.stylesOnly) {
     if (!this.options.render.bundleRenderer.directives) {
       this.options.render.bundleRenderer.directives = {};
